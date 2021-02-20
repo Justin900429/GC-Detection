@@ -13,7 +13,7 @@ The class show the images detected in Detection class. Also, provide the functio
 ## Constructor
 ### `#!python __init__(self, cfg: str = "cfg.yaml")`
 * Args
-    * `cfg`: Path to the **yaml** file. The parameters of the cfg file are listed [here](/Usage/#config-file).
+    * `cfg`: Path to the **yaml** file. The parameters of the cfg file are listed [here](/GC-Detection/Usage/#config-file).
 
 ## Method
 ### `#!python start(self)`

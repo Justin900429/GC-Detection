@@ -8,10 +8,10 @@ This project is for users to quickly deployed their object detection application
 ## Classes
 The library contain two classes for use:  
 
-* [Detection](/Detection)  
+* [Detection](/GC-Detection/Detection)  
     Get the images with bounding boxes on it.
       
-* [Interface](/Interface)  
+* [Interface](/GC-Detection/Interface)  
     This class supports the GUI interface for the detection images and allows user to upload images to [Google Cloud Storage](https://cloud.google.com/storage/).
 
 ## Installation
@@ -20,7 +20,7 @@ pip install GC-Detection
 ```
 
 ## Usage
-This page show the detail of using the GC_Detection package. [GO form here.](/Usage)
+This page show the detail of using the GC_Detection package. [GO form here.](/GC-Detection/Usage)
 
 ## Example Code
 The example code was upload to the github directory, please visit [here](https://github.com/Justin900429/object_detection/tree/main/example)
