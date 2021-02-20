@@ -39,7 +39,7 @@ pip install requirements/common.txt
 
 
 ## Usage 
-Follow the [documentation](https://justin900429.github.io/GC-Detection/Detection/Usage) to set up everything.
+Follow the [documentation](https://justin900429.github.io/GC-Detection/Usage) to set up everything.
 
 ## Example to Control the Drone
 | | direction | arrow |
