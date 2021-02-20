@@ -381,8 +381,7 @@ class Interface:
         try:
             if self.yaml["output_path"] is not None:
                 # Save image in local
-                LOGGER.info("Saved {filename} in local folder",
-                            filename=filename)
+                LOGGER.info(f"Saved {filename} in local folder",)
                 path = os.path.sep.join((self.yaml["output_path"], filename))
                 cv2.imwrite(path, save_img)
 
@@ -393,8 +392,7 @@ class Interface:
                                                                       filename)),
                                                     content_type="image/jpeg")
 
-                    LOGGER.info("Saved {filename} to google cloud storage",
-                                filename=filename)
+                    LOGGER.info(f"Saved {filename} to google cloud storage")
             elif self.yaml["bucket"] is not None:
                 # Convert numpy array to bytes
                 temp_file = Image.fromarray(cv2.cvtColor(save_img, cv2.COLOR_BGR2RGB))
@@ -407,8 +405,7 @@ class Interface:
                 image_blob.upload_from_file(temp_file_bytes,
                                             content_type="image/jpeg")
 
-                LOGGER.info("Saved {filename} to google cloud storage",
-                            filename=filename)
+                LOGGER.info(f"Saved {filename} to google cloud storage")
         except Exception as error:
             # If errors occur, just print the error messages
             #  and don't exit the program
