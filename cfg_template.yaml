@@ -3,7 +3,7 @@
 google-kit-json: "/path/to/google/kit/json"
 
 # Google Cloud Storage bucket.
-# Set null for not uploading
+# Set null for not uploading images
 bucket: null
 
 # Maximum return object

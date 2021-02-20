@@ -3,6 +3,8 @@ repo_name: Justin900429/GC-Detection
 
 site_name: GC-Detection
 theme:
+  favicon: asset/favicon.png
+  logo: asset/logo.png
   icon:
     repo: fontawesome/brands/github-alt
   name: material
@@ -32,3 +34,4 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.inlinehilite
+  - pymdownx.critic

@@ -1,5 +1,5 @@
 from djitellopy import Tello
-import detection
+import gc_detection
 
 # Connect to tello using djitellopy package
 tello = Tello(host="172.20.10.8")
@@ -9,7 +9,7 @@ tello.connect()
 tello.streamon()
 
 # Start the app
-detect_window = detection.Interface()
+detect_window = gc_detection.Interface()
 
 
 class Control:
@@ -70,7 +70,7 @@ detect_window.root.bind("s", Control.backward)
 detect_window.root.bind("a", Control.left)
 detect_window.root.bind("d", Control.right)
 detect_window.root.bind("wd", Control.right_front)
-detect_window.root.bind("ws", Control.left_front)
+detect_window.root.bind("wa", Control.left_front)
 detect_window.root.bind("sd", Control.right_back)
 detect_window.root.bind("sa", Control.left_back)
 detect_window.root.bind("<KeyRelease>", Control.stop)
