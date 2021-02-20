@@ -73,7 +73,7 @@ class Detection:
                 sys.exit(1)
 
         # Camera height and width
-        self.size = size
+        self.__size = size
         self.__camera = camera
 
         # Initialize the cap
@@ -103,9 +103,9 @@ class Detection:
         self.__predict_start = False
 
         # Initializing threads
-        detect_persons = threading.Thread(target=self._detect_objects,
-                                          daemon=True)
-        detect_persons.start()
+        detect_objs = threading.Thread(target=self._detect_objs,
+                                       daemon=True)
+        detect_objs.start()
         draw_rec = threading.Thread(target=self._draw_rec,
                                     daemon=True)
         draw_rec.start()
@@ -125,7 +125,11 @@ class Detection:
     def img(self):
         return self.__img
 
-    def _detect_objects(self):
+    @property
+    def size(self):
+        return self.__size
+
+    def _detect_objs(self):
         while True:
             # Wait for input images
             if (not self.__predict_start) or \
@@ -160,7 +164,7 @@ class Detection:
             if not success:
                 continue
 
-            self.__img = cv2.resize(self.__img, (self.size[0], self.size[1]))
+            self.__img = cv2.resize(self.__img, (self.__size[0], self.__size[1]))
 
     def _draw_rec(self):
         # Draw the bounding boxes to the frame
@@ -173,7 +177,7 @@ class Detection:
                 continue
 
             # Get the size of image
-            width, height = self.size
+            width, height = self.__size
             # Get the copy from self.__img
             self.__frame = np.copy(self.__img)
             for info in self.__detect_info:
@@ -210,8 +214,8 @@ class Detection:
     def start(self):
         # Wake up the camera and set the size
         self.__cap = cv2.VideoCapture(self.__camera)
-        self.__cap.set(3, self.size[0])
-        self.__cap.set(4, self.size[1])
+        self.__cap.set(3, self.__size[0])
+        self.__cap.set(4, self.__size[1])
 
         # Check whether the camera is opened or not
         if not self.__cap.isOpened():
