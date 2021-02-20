@@ -1,5 +1,6 @@
 repo_url: https://github.com/Justin900429/GC-Detection
 repo_name: Justin900429/GC-Detection
+
 site_name: GC-Detection
 theme:
   icon:
@@ -9,7 +10,6 @@ theme:
   highlightjs: true
   hljs_languages:
     - yaml
-    - python
 
   features:
     - navigation.tabs
@@ -21,7 +21,7 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/Justin900429/object_detection
+      link: https://github.com/Justin900429/GC-Detection
 
 copyright: Copyright &copy; 2021 - Justin Ruan and Joyce Fang
 

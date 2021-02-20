@@ -48,7 +48,7 @@ class Detection:
     def __init__(self,
                  google_kit_json_path: str,
                  categories: list,
-                 size=(640, 480),
+                 size: tuple = (640, 480),
                  max_results: int = 10,
                  camera=0
                  ):
@@ -71,6 +71,16 @@ class Detection:
                 LOGGER.error("Error when adding the credentials, exit now..."
                              "Please check the given path.")
                 sys.exit(1)
+
+        # Check for the size
+        if len(size) != 2:
+            LOGGER.error("The length of size should be 2, (width, height)")
+            sys.exit(1)
+        elif not isinstance(size[0], int) or \
+                not isinstance(size[1], int):
+            wrong_type = type(size[0]) if not isinstance(size[0], int) else type(size[1])
+            LOGGER.error(f"The type of size should be integer not {wrong_type}.")
+            sys.exit(1)
 
         # Camera height and width
         self.__size = size
@@ -251,19 +261,19 @@ class Interface:
 
         # Initialize the root window and image panel
         self.root = tk.Tk()
-        self.panel = None
+        self.__panel = None
 
         # Set the minimum size of the Tkinter window
         self.root.minsize(850, 500)
 
         # Open the detection Path
-        self.detect = Detection(google_kit_json_path=self.yaml["google-kit-json"],
-                                categories=self.yaml["categories"],
-                                size=(self.yaml["width"], self.yaml["height"]),
-                                max_results=int(self.yaml["max_request"]),
-                                camera=self.yaml["camera"],
-                                )
-        self.detect.start()
+        self.__detect = Detection(google_kit_json_path=self.yaml["google-kit-json"],
+                                  categories=self.yaml["categories"],
+                                  size=(self.yaml["width"], self.yaml["height"]),
+                                  max_results=int(self.yaml["max_request"]),
+                                  camera=self.yaml["camera"],
+                                  )
+        self.__detect.start()
 
         # Check OS to make the design
         if platform.system() == "Darwin":
@@ -301,20 +311,20 @@ class Interface:
                       column=1)
 
         # Design the label to display which categories show up on the screen
-        self.info_label = tk.Label(bg="#DFBFA1",
-                                   height=20,
-                                   width=16,
-                                   anchor="nw",
-                                   padx=10,
-                                   pady=10)
-        self.info_label.grid(row=1,
-                             column=1)
+        self.__info_label = tk.Label(bg="#DFBFA1",
+                                     height=20,
+                                     width=16,
+                                     anchor="nw",
+                                     padx=10,
+                                     pady=10)
+        self.__info_label.grid(row=1,
+                               column=1)
 
         quit_btn.grid(row=2,
                       column=1)
 
         # Quit the event and start the video loop
-        self.quit = threading.Event()
+        self.__quit = threading.Event()
         video_start = threading.Thread(target=self.video_loop,
                                        daemon=True)
         video_start.start()
@@ -325,9 +335,9 @@ class Interface:
 
     def video_loop(self):
         # Keep looping over frames until we are instructed to stop
-        while not self.quit.is_set():
+        while not self.__quit.is_set():
             # Get the correct frame
-            self.frame = self.detect.frame
+            self.frame = self.__detect.frame
             if self.frame is None:
                 continue
 
@@ -337,24 +347,24 @@ class Interface:
             image = Image.fromarray(image)
             image = ImageTk.PhotoImage(image)
 
-            # If the panel is not None, we need to initialize it
-            if self.panel is None:
-                self.panel = tk.Label(image=image)
-                self.panel.image = image
-                self.panel.grid(row=0,
-                                column=0,
-                                rowspan=3,
-                                padx=10,
-                                pady=10)
+            # If the panel is not None, initialize it
+            if self.__panel is None:
+                self.__panel = tk.Label(image=image)
+                self.__panel.image = image
+                self.__panel.grid(row=0,
+                                  column=0,
+                                  rowspan=3,
+                                  padx=10,
+                                  pady=10)
             else:  # Otherwise, simply update the panel
-                self.panel.configure(image=image)
-                self.panel.image = image
+                self.__panel.configure(image=image)
+                self.__panel.image = image
 
             # Output the detected categories
             text = ""
-            for name, count in self.detect.categories.items():
+            for name, count in self.__detect.categories.items():
                 text = f"{name}: {count}\n"
-            self.info_label.configure(text=text)
+            self.__info_label.configure(text=text)
 
     def upload(self, filename):
         # Save to local path
@@ -415,10 +425,13 @@ class Interface:
                                          daemon=True)
         save_img_back.start()
 
+    def start(self):
+        self.root.mainloop()
+
     def on_close(self):
         # Release the resource and
         #  close the windows
         LOGGER.info("closing...")
-        self.quit.set()
-        self.detect.end()
+        self.__quit.set()
+        self.__detect.end()
         self.root.quit()

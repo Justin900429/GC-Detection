@@ -77,5 +77,5 @@ detect_window.root.bind("<KeyRelease>", Control.stop)
 detect_window.root.bind("l", Control.land)
 
 # Start running the detection function
-detect_window.root.mainloop()
+detect_window.start()
 tello.streamoff()
