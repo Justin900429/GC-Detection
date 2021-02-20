@@ -35,3 +35,4 @@ markdown_extensions:
   - admonition
   - pymdownx.inlinehilite
   - pymdownx.critic
+  - attr_list

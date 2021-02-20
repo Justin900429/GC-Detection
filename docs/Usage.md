@@ -1,5 +1,6 @@
 # Usage
 
+
 ## Prerequisite
 
 1. **Activate the Cloud Vision API**  
@@ -69,8 +70,9 @@ interface.start()
 ```
 
 ## Categories
-All the supported categories can be found in [here](https://modelcards.withgoogle.com/object-detection#performance).
+All the supported categories can be found in [here](https://modelcards.withgoogle.com/object-detection#performance). You can search the wanted category like below image.
 
+![categories](https://i.imgur.com/u1etDtR.jpg)
 
 ## Cost
 
@@ -81,6 +83,6 @@ All the supported categories can be found in [here](https://modelcards.withgoogl
 
 | First 1000 units/month  | Units 1001 - 5,000,000 / month  | Units 5,000,001 and higher / month |
 | ----------------------- | ------------------------------- | -----------------------------------|
-| **Free**                | **$2.25US**                     | **$1.50**                          |
+| **Free**                | **$2.25US**                     | **$1.50US**                          |
 
 For more pricing information, please visit the [doc](https://cloud.google.com/vision/pricing#prices) of Vision API.
