@@ -29,7 +29,7 @@ copyright: Copyright &copy; 2021 - Justin Ruan and Joyce Fang
 
 markdown_extensions:
   - toc:
-      permalink: ⚓︎
+      permalink: 😆
   - pymdownx.highlight
   - pymdownx.superfences
   - admonition
