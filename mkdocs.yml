@@ -1,0 +1,10 @@
+site_name: GC-detection
+theme:
+  name: material
+  
+  highlightjs: true
+  hljs_languages:
+    - yaml
+
+  features:
+    - navigation.tabs
