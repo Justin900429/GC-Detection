@@ -372,9 +372,10 @@ class Interface:
 
         # Make the Google Cloud Storage client
         #  and set the storage path
-        client = storage.Client()
-        bucket = client.get_bucket(self.yaml["bucket"])
-        image_blob = bucket.blob(filename)
+        if self.yaml["bucket"] is not None:
+            client = storage.Client()
+            bucket = client.get_bucket(self.yaml["bucket"])
+            image_blob = bucket.blob(filename)
 
         # Upload and save the image
         try:

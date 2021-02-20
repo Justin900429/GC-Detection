@@ -36,7 +36,7 @@ Start the object detection and open the camera.
 End the detection and release the camera.
 
 ## Logic
-Below is the flow char that shows the logic behind the class.
+Below is a flow chat that shows the logic behind the class.
 <img src="https://i.imgur.com/4JMuXG6.png" width=500/>
 
 
