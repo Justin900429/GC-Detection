@@ -1,8 +1,8 @@
-from distutils.core import setup
+from setuptools import setup
 import platform
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+with open("README.md", "r") as f:
+    long_description = f.read()
 
 requirements = [
         "PyYAML",
