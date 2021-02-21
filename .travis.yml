@@ -8,7 +8,7 @@ script:
 - mkdocs gh-deploy --force --clean
 deploy:
   provider: pypi
-  user: __token__
+  username: "__token__"
   password: ${PYPI_TOKEN}
   on:
     branch: main
