@@ -16,7 +16,7 @@ The library contain two classes for use:
 
 ## Installation
 ```commandline
-pip install GC-Detection
+pip install GCDetection
 ```
 
 ## Usage

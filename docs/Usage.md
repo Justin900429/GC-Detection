@@ -63,7 +63,8 @@ categories:
 After creating config file, users can use it as below.
 
 ```python
-import gc_detection
+
+from gcdetection import gc_detection
 
 interface = gc_detection.interface(cfg="/path/to/config/file")
 interface.start()

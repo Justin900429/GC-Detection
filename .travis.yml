@@ -1,16 +1,20 @@
 language: python
-
 python:
-  - "3.8"
-
+- '3.8'
 install:
-  - pip install mkdocs-material
-  - echo -e "machine github.com\n  login ${GITHUB_TOKEN}" > ~/.netrc
-
+- pip install mkdocs-material
+- echo -e "machine github.com\n  login ${GITHUB_TOKEN}" > ~/.netrc
 script:
-  - mkdocs gh-deploy --force --clean
-
+- mkdocs gh-deploy --force --clean
+deploy:
+  provider: pypi
+  user: Justin900
+  password:
+    secure: tyF+0bV6a6ur/8hA+qRY9NYf3b2akgHcGvfOGP1+KAAbm7xbpBEI43tF5mWImfYeRIHiHc2py6OUfNqIO1Kf/v7qur5rl3kiUFgdeTpAvEqYUWt3zeZbWL4PfBC4KcqryCg9jORM83ZteS8z/QEgOqFm/4IRQsqlPns7OZePVt8UJqQf0SXBeiLczy0ao4AOt08Qm0HNXJi8dzDFVJfbeuxCSWguOphWTprthv+PrbdoPC7FlUd3VrFuuz3mvdypriLmkkt87Vk6S0BNSVcwlC5YZIvEzS1fo3RtlixCtehd0bs8XD5s7Qc+UaLB9gkTqfaK07eLngyi+eYM/EeWFwyBbT22WfFHOGRhWusL+1jXCeVin9UaeYyu1Dxx85p72o9atwnpqEqROySzECzGq/FLs+v/qgwffUBJwTyFAkPo4ejJ55skER3Nidr8EqXhZrOJgmxDX9lJgUnK0fv9VX7gmfXJJ9zR6h3zUkRJo0nRfrgO5WQ5iRLNWb+LgzjuoZqi5tmgvG42TKPAJMuWn1TIqaF4BzIXoUL9SeIKC97yKRIy9xb3FVbaMKrv/98pN7xyNn9ssGe7qAFLO4+G40rIiqAKS2cNXAnyIRY2JMaE2rLQw+zRmlDbMqgBSOO1acR26yNgayUXrgNsKF8TjswQWGKnFrqaZSKHEmfANLQ=
+  on:
+    tags: true
+    branch: main
 branches:
   only:
-    - master
-    - main
+  - master
+  - main

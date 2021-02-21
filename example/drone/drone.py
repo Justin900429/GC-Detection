@@ -1,5 +1,5 @@
 from djitellopy import Tello
-import gc_detection
+from gcdetection import gc_detection
 
 # Connect to tello using djitellopy package
 tello = Tello(host="172.20.10.8")

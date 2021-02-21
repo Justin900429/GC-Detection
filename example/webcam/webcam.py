@@ -1,4 +1,4 @@
-import gc_detection
+from gcdetection import gc_detection
 
 # Start the app
 detect_window = gc_detection.Interface()

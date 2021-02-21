@@ -24,7 +24,7 @@ Although there are lots of **object detection applications**, most of the applic
 
 ## Where to get it
 ```
-pip install GC-Detection
+pip install GCDetection
 ```
 
 ## Needed Package
