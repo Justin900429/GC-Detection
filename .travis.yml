@@ -11,6 +11,7 @@ deploy:
   username: "__token__"
   password: ${PYPI_TOKEN}
   on:
+    tags: true
     branch: main
 branches:
   only:

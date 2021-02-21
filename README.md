@@ -1,6 +1,6 @@
 # README
 
-[![Build Status](https://travis-ci.com/Justin900429/GC-Detection.svg?branch=main)](https://travis-ci.com/Justin900429/GC-Detection)
+[![Build Status](https://travis-ci.com/Justin900429/GC-Detection.svg?branch=main)](https://travis-ci.com/Justin900429/GC-Detection) [![PyPI](https://img.shields.io/pypi/v/GCDetection)](https://pypi.org/project/GCDetection/)
 
 ## Introduction 
 Although there are lots of **object detection applications**, most of the applications are **hard to deploy**. In our project, we aim at **creating an simple application** that user can easily do the object detection jobs. In one of our demonstration, we will **simulate a seismic disaster and use a drone to do the search and rescue with our application**. This demonstration can show the value of our project.
