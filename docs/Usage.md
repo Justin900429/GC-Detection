@@ -1,6 +1,5 @@
 # Usage
 
-
 ## Prerequisite
 
 1. **Activate the Cloud Vision API**  
@@ -14,7 +13,7 @@
 ## Config file
 
 !!!info
-    To use the class `Interface`, you must set up the config file using the below template or from [here](https://github.com/Justin900429/GC-Detection/blob/main/cfg_template.yaml).
+    To use the class `Interface`, you must set up the config file using the below template or from [here](https://github.com/Justin900429/GC-Detection/blob/main/cfg_template.yml).
 
 Below show the template of config file. The format of config file is `YAML`.
 
@@ -63,10 +62,9 @@ categories:
 After creating config file, users can use it as below.
 
 ```python
+import gcdetection
 
-from gcdetection import gc_detection
-
-interface = gc_detection.interface(cfg="/path/to/config/file")
+interface = gcdetection.Interface(cfg="/path/to/config/file")
 interface.start()
 ```
 
@@ -78,12 +76,16 @@ All the supported categories can be found in [here](https://modelcards.withgoogl
 ## Cost
 
 !!!warning
-    The service of cloud vision is not free.
+    The service of Cloud Vision API and Cloud Storage is not free.
+
+* Cloud storage
+
+    [Pricing for cloud storage](https://cloud.google.com/storage/pricing#price-tables)
+
+* Cloud Vision API (Price per 1000 units)
+
+    | First 1000 units/month  | Units 1001 - 5,000,000 / month  | Units 5,000,001 and higher / month |
+    | ----------------------- | ------------------------------- | -----------------------------------|
+    | **Free**                | **$2.25US**                     | **$1.50US**                          |
     
-* Price per 1000 units
-
-| First 1000 units/month  | Units 1001 - 5,000,000 / month  | Units 5,000,001 and higher / month |
-| ----------------------- | ------------------------------- | -----------------------------------|
-| **Free**                | **$2.25US**                     | **$1.50US**                          |
-
-For more pricing information, please visit the [doc](https://cloud.google.com/vision/pricing#prices) of Vision API.
+    For more pricing information, please visit the [doc](https://cloud.google.com/vision/pricing#prices) of Vision API.

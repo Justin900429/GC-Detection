@@ -11,10 +11,63 @@ The class show the images detected in Detection class. Also, provide the functio
 | `frame`     | **numpy.array**   | Image with bounding box and categories. |
 
 ## Constructor
-### `#!python __init__(self, cfg: str = "cfg.yaml")`
+### `#!python __init__(self, cfg: str = "cfg.yml")`
 * Args
     * `cfg`: Path to the **yaml** file. The parameters of the cfg file are listed [here](/GC-Detection/Usage/#config-file).
 
 ## Method
 ### `#!python start(self)`
 Start the tkinter to work. The code inside is simply `#!python self.root.mainloop()`
+
+## Example
+
+```python
+import gcdetection
+
+# Create detection interface and start detecting
+detect_window = gcdetection.Interface()
+detect_window.start()
+```
+
+For more example, please visit the [example repository](https://github.com/Justin900429/GC-Detection/tree/main/example).
+
+## Extensive usage.
+User can access to the `root` [attribute](#attributes). Any method that can be used in **tkinter** can also be implemented here. Below are some examples that users can do.
+
+- **Key binding**  
+
+    [Documentation from tkinter](https://docs.python.org/3/library/tkinter.html#bindings-and-events)
+
+    ```python
+    import gcdetection
+    ...
+    detect_window = gcdetection.Interface()
+    
+    # Should specify the event arguments for tkinter to pass in
+    def task(event):
+        pass
+    # Bind key "k" to function "task"
+    detect_window.root.bind("k", task)
+    ...
+    ```
+
+- **Continuing task**
+
+    [Reference to the usage](https://www.geeksforgeeks.org/python-after-method-in-tkinter/)
+    
+    ```python
+    import gcdetection
+    ...
+    detect_window = gcdetection.Interface()
+    ...
+    # Should specify the event arguments for tkinter to pass in
+    def task(event):
+        # TODO: Task to define
+        detect_window.root.after(20, task)
+    
+    # Run the task every 20 milliseconds
+    detect_window.root.after(20, task)
+    # Bind key "k" to function "task"
+    detect_window.root.bind("k", task)
+    ...
+    ```

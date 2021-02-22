@@ -1,5 +1,5 @@
 from djitellopy import Tello
-from gcdetection import gc_detection
+import gcdetection
 
 # Connect to tello using djitellopy package
 tello = Tello(host="172.20.10.8")
@@ -9,7 +9,7 @@ tello.connect()
 tello.streamon()
 
 # Start the app
-detect_window = gc_detection.Interface()
+detect_window = gcdetection.Interface()
 
 
 class Control:

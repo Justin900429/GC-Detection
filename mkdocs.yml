@@ -1,6 +1,7 @@
 repo_url: https://github.com/Justin900429/GC-Detection
 repo_name: Justin900429/GC-Detection
 
+edit_uri: edit/main/docs/
 site_name: GC-Detection
 theme:
   favicon: asset/favicon.png

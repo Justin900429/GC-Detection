@@ -9,7 +9,7 @@ This class provide the function for obtaining the detected images.
 | Attributes  | Type               | Description                                                   |
 | ----------- | -------------------|-----------------------------------------|
 | `categories`| **dict**           | Count all the detected objects.         |
-| `img`       | **np.array**       | Origin image get from camera.           |
+| `img`       | **numpy.array**    | Origin image get from the camera.       |
 | `size`      | **tuple**          | Size of image.                          |
 | `frame`     | **numpy.array**    | Image with bounding box and categories. |
 
@@ -38,6 +38,39 @@ End the detection and release the camera.
 ## Logic
 Below is a flow chat that shows the logic behind the class.
 <img src="https://i.imgur.com/4JMuXG6.png" width=500/>
+
+## Example
+```python
+import gcdetection
+import cv2
+
+# Create detected class and start the detection
+detection_class = gcdetection.Detection(google_kit_json_path="/path/to/json/file",
+                                        categories=["Person", "Book"],
+                                        size=(640, 480),
+                                        max_results=10,
+                                        camera=0)
+detection_class.start()
+
+# Show the original images and detected images
+while True:
+    # Obtain images
+    ori_img = detection_class.img
+    detected_img = detection_class.frame
+    
+    # Wait for key
+    key = cv2.waitKey(30) & 0xff
+    if key == 27: # ESC
+        break
+    
+    # Show the images
+    if ori_img is not None:
+        cv2.imshow("Original image", ori_img)
+    if detected_img is not None:
+        cv2.imshow("Detected image", detected_img)
+```
+
+For more example, please visit the [example repository](https://github.com/Justin900429/GC-Detection/tree/main/example). 
 
 
 

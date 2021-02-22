@@ -154,5 +154,5 @@ fabric.properties
 .DS_Store
 
 # Test file
-example/cfg.yaml
+example/drone/cfg.yml
 .pylintrc

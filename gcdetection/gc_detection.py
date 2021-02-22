@@ -7,7 +7,7 @@ Detection:
 Interface:
     This class provide how a GUI for user to save images and see the detected
     images. It can connect to Google Cloud Storage for saving the images being detected.
-    To set the options, please use cfg_template.yaml as template.
+    To set the options, please use cfg_template.yml as template.
 """
 
 # Import built-in library
@@ -241,7 +241,7 @@ class Detection:
 
 class Interface:
     def __init__(self,
-                 cfg: str = "cfg.yaml"):
+                 cfg: str = "cfg.yml"):
         # Parse yaml file
         with open(cfg, "r") as yaml_file:
             self.yaml = yaml.load(yaml_file, Loader=yaml.FullLoader)
@@ -273,7 +273,6 @@ class Interface:
                                   max_results=int(self.yaml["max_request"]),
                                   camera=self.yaml["camera"],
                                   )
-        self.__detect.start()
 
         # Check OS to make the design
         if platform.system() == "Darwin":
@@ -424,6 +423,7 @@ class Interface:
         save_img_back.start()
 
     def start(self):
+        self.__detect.start()
         self.root.mainloop()
 
     def on_close(self):
