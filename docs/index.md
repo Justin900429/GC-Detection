@@ -37,7 +37,7 @@ conda activate <name-of-env>
     ```
 
 ## Usage
-This page show the detail of using the GC_Detection package. [GO form here](/GC-Detection/Usage).
+This page show the detail of using the GC_Detection package. [GO from here](/GC-Detection/Usage).
 
 ## Example Code
 The example code was upload to the github directory, please visit [here](https://github.com/Justin900429/GC-Detection/tree/main/example).

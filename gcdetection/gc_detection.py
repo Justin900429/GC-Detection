@@ -45,6 +45,18 @@ LOGGER.setLevel(logging.INFO)
 
 
 class Detection:
+    """Using the Cloud Vision API to get the detected images.
+
+    Attributes:
+        self.img: Original image get from camera
+        self.frame: Image with bounding boxes on it
+        self.size: Size of the image
+        self.categories: Count the detected objects
+
+    Method:
+        self.start(self): Start the detection
+        self.end(self): End the detection
+    """
     def __init__(self,
                  google_kit_json_path: str,
                  categories: list,
@@ -125,21 +137,33 @@ class Detection:
 
     @property
     def categories(self):
+        """dict (name, count): Getter of detected categories"""
         return self.__show_categories
 
     @property
     def frame(self):
+        """numpy.array: Getter of detected frame"""
         return self.__frame
 
     @property
     def img(self):
+        """numpy.array: Getter of detected image"""
         return self.__img
 
     @property
     def size(self):
+        """tuple (width, height): Size of the image"""
         return self.__size
 
     def _detect_objs(self):
+        """Get the detected information from Cloud Vision API
+        and save the info in self.__detection_info
+
+        Args:
+            self: Instance itself
+
+        Return: None
+        """
         while True:
             # Wait for input images
             if (not self.__predict_start) or \
@@ -162,6 +186,13 @@ class Detection:
             cv2.waitKey(30)
 
     def _get_img(self):
+        """Return the image from the camera
+
+        Args:
+            self: Instance itself
+
+        Return: None
+        """
         # Read camera image
         while True:
             # Wait for prediction
@@ -177,6 +208,14 @@ class Detection:
             self.__img = cv2.resize(self.__img, (self.__size[0], self.__size[1]))
 
     def _draw_rec(self):
+        """Draw the bounding boxes and information
+        on the self.__img
+
+        Args:
+            self: Instance itself
+
+        Return: None
+        """
         # Draw the bounding boxes to the frame
         while True:
             # Save
@@ -222,6 +261,14 @@ class Detection:
             self.__show_categories = temp_categories
 
     def start(self):
+        """Start the detection
+
+        Args:
+            self: Instance itself
+
+        Return: None
+        """
+
         # Wake up the camera and set the size
         self.__cap = cv2.VideoCapture(self.__camera)
         self.__cap.set(3, self.__size[0])
@@ -229,10 +276,18 @@ class Detection:
 
         # Check whether the camera is opened or not
         if not self.__cap.isOpened():
-            LOGGER.error("The camera is not opened, please check the path or the device.")
+            LOGGER.error("The camera is not opened, please check the input or the device.")
         self.__predict_start = True
 
     def end(self):
+        """End the detection and release the resources
+
+        Args:
+            self: Instance itself
+
+        Return: None
+        """
+
         # Close the prediction and
         #  release the camera
         self.__predict_start = False

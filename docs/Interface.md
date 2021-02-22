@@ -6,13 +6,13 @@ The class show the images detected in Detection class. Also, provide the functio
 
 ## Attributes
 | Attributes  | Type              | Description                             |
-| ----------- | ------------------|-----------------------------------------|
+| ----------- | ----------------- | --------------------------------------- |
 | `root`      | **tkinter.Tk**    | Root object from tkinter.               |
 | `frame`     | **numpy.array**   | Image with bounding box and categories. |
 
 ## Constructor
 ### `#!python __init__(self, cfg: str = "cfg.yml")`
-* Args
+* **Args**
     * `cfg`: Path to the **yaml** file. The parameters of the cfg file are listed [here](/GC-Detection/Usage/#config-file).
 
 ## Method
