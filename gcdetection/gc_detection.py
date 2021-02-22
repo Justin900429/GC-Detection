@@ -1,4 +1,4 @@
-r"""This module is to give user a quickly built object detection application
+r"""This module is to give user a quickly built object detection application.
 
 Detection:
     This class provide the object detection function which use Google CLoud Vision API
@@ -48,15 +48,16 @@ class Detection:
     """Using the Cloud Vision API to get the detected images.
 
     Attributes:
-        self.img: Original image get from camera
-        self.frame: Image with bounding boxes on it
-        self.size: Size of the image
-        self.categories: Count the detected objects
+        self.img: Original image get from camera.
+        self.frame: Image with bounding boxes on it.
+        self.size: Size of the image.
+        self.categories: Count the detected objects.
 
     Method:
-        self.start(self): Start the detection
-        self.end(self): End the detection
+        self.start(self): Start the detection.
+        self.end(self): End the detection.
     """
+
     def __init__(self,
                  google_kit_json_path: str,
                  categories: list,
@@ -137,30 +138,30 @@ class Detection:
 
     @property
     def categories(self):
-        """dict (name, count): Getter of detected categories"""
+        """dict (name, count): Getter of detected categories."""
         return self.__show_categories
 
     @property
     def frame(self):
-        """numpy.array: Getter of detected frame"""
+        """numpy.array: Getter of detected frame."""
         return self.__frame
 
     @property
     def img(self):
-        """numpy.array: Getter of detected image"""
+        """numpy.array: Getter of detected image."""
         return self.__img
 
     @property
     def size(self):
-        """tuple (width, height): Size of the image"""
+        """tuple (width, height): Size of the image."""
         return self.__size
 
     def _detect_objs(self):
         """Get the detected information from Cloud Vision API
-        and save the info in self.__detection_info
+        and save the info in self.__detection_info.
 
         Args:
-            self: Instance itself
+            self: Instance itself.
 
         Return: None
         """
@@ -186,10 +187,10 @@ class Detection:
             cv2.waitKey(30)
 
     def _get_img(self):
-        """Return the image from the camera
+        """Return the image from the camera.
 
         Args:
-            self: Instance itself
+            self: Instance itself.
 
         Return: None
         """
@@ -209,10 +210,10 @@ class Detection:
 
     def _draw_rec(self):
         """Draw the bounding boxes and information
-        on the self.__img
+        on the self.__img.
 
         Args:
-            self: Instance itself
+            self: Instance itself.
 
         Return: None
         """
@@ -261,10 +262,10 @@ class Detection:
             self.__show_categories = temp_categories
 
     def start(self):
-        """Start the detection
+        """Start the detection.
 
         Args:
-            self: Instance itself
+            self: Instance itself.
 
         Return: None
         """
@@ -280,10 +281,10 @@ class Detection:
         self.__predict_start = True
 
     def end(self):
-        """End the detection and release the resources
+        """End the detection and release the resources.
 
         Args:
-            self: Instance itself
+            self: Instance itself.
 
         Return: None
         """
@@ -295,24 +296,34 @@ class Detection:
 
 
 class Interface:
+    """Design the Interface by tkinter and show information on it.
+
+    Attributes:
+        self.frame: Image with bounding boxes on it.
+        self.root: Instance of tkinter.Tk().
+
+    Method:
+        self.start(self): Start the detection interface.
+    """
+
     def __init__(self,
                  cfg: str = "cfg.yml"):
         # Parse yaml file
         with open(cfg, "r") as yaml_file:
-            self.yaml = yaml.load(yaml_file, Loader=yaml.FullLoader)
+            self.__yaml = yaml.load(yaml_file, Loader=yaml.FullLoader)
 
         # Check for the output path
-        if (self.yaml["output_path"] is not None) and \
-                (not os.path.exists(self.yaml["output_path"])):
-            os.makedirs(self.yaml["output_path"])
-        elif (self.yaml["output_path"] is not None) and \
-                not os.path.isdir(self.yaml["output_path"]):
+        if (self.__yaml["output_path"] is not None) and \
+                (not os.path.exists(self.__yaml["output_path"])):
+            os.makedirs(self.__yaml["output_path"])
+        elif (self.__yaml["output_path"] is not None) and \
+                not os.path.isdir(self.__yaml["output_path"]):
             LOGGER.error("Provided output path is already exist and not a directory. "
                          "Please check for the input file.")
             sys.exit(1)
 
         # Image to show, init to None
-        self.frame = None
+        self.__frame = None
 
         # Initialize the root window and image panel
         self.root = tk.Tk()
@@ -322,11 +333,11 @@ class Interface:
         self.root.minsize(850, 500)
 
         # Open the detection Path
-        self.__detect = Detection(google_kit_json_path=self.yaml["google-kit-json"],
-                                  categories=self.yaml["categories"],
-                                  size=(self.yaml["width"], self.yaml["height"]),
-                                  max_results=int(self.yaml["max_request"]),
-                                  camera=self.yaml["camera"],
+        self.__detect = Detection(google_kit_json_path=self.__yaml["google-kit-json"],
+                                  categories=self.__yaml["categories"],
+                                  size=(self.__yaml["width"], self.__yaml["height"]),
+                                  max_results=int(self.__yaml["max_request"]),
+                                  camera=self.__yaml["camera"],
                                   )
 
         # Check OS to make the design
@@ -337,14 +348,14 @@ class Interface:
                                        command=self.take_snapshot,
                                        padx=10,
                                        pady=10,
-                                       bg="#EDD4B2")
+                                       bg="#A8E0FF")
             # Design the button of "quit" for MACOSX
             quit_btn = tkmacosx.Button(self.root,
                                        text='Quit',
                                        command=self.on_close,
                                        padx=10,
                                        pady=10,
-                                       background="#D0A98F")
+                                       background="#778EBB")
         else:
             # Design the button of "snapshot" for other OS
             snap_btn = tk.Button(self.root,
@@ -352,21 +363,24 @@ class Interface:
                                  command=self.take_snapshot,
                                  padx=10,
                                  pady=10,
-                                 bg="#EDD4B2")
+                                 bg="#A8E0FF")
             # Design the button of "quit" for other OS
             quit_btn = tk.Button(self.root,
                                  text='Quit',
                                  command=self.on_close,
                                  padx=10,
                                  pady=10,
-                                 background="#D0A98F")
+                                 background="#778EBB")
 
         snap_btn.grid(row=0,
                       column=1)
 
+        quit_btn.grid(row=3,
+                      column=1)
+
         # Design the label to display which categories show up on the screen
-        self.__info_label = tk.Label(bg="#DFBFA1",
-                                     height=20,
+        self.__info_label = tk.Label(bg="#8EE3F5",
+                                     height=10,
                                      width=16,
                                      anchor="nw",
                                      padx=10,
@@ -374,8 +388,15 @@ class Interface:
         self.__info_label.grid(row=1,
                                column=1)
 
-        quit_btn.grid(row=2,
-                      column=1)
+        # Add user-defined label
+        self.__user_define_label = tk.Label(bg="#70CAD1",
+                                            height=10,
+                                            width=16,
+                                            anchor="nw",
+                                            padx=10,
+                                            pady=10)
+        self.__user_define_label.grid(row=2,
+                                      column=1)
 
         # Quit the event and start the video loop
         self.__quit = threading.Event()
@@ -387,17 +408,29 @@ class Interface:
         self.root.wm_title("Object detection")
         self.root.wm_protocol("WM_DELETE_WINDOW", self.on_close)
 
+    @property
+    def frame(self):
+        """numpy.array: Getter of detected frame."""
+        return self.__frame
+
     def video_loop(self):
+        """Show the scene that the camera captured by using open CV.
+
+        Args:
+            self: Instance itself.
+
+        Return: None
+        """
         # Keep looping over frames until we are instructed to stop
         while not self.__quit.is_set():
             # Get the correct frame
-            self.frame = self.__detect.frame
-            if self.frame is None:
+            self.__frame = self.__detect.frame
+            if self.__frame is None:
                 continue
 
             # Convert BGR color to RGB and
             #  make it to pillow format
-            image = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
+            image = cv2.cvtColor(self.__frame, cv2.COLOR_BGR2RGB)
             image = Image.fromarray(image)
             image = ImageTk.PhotoImage(image)
 
@@ -407,7 +440,7 @@ class Interface:
                 self.__panel.image = image
                 self.__panel.grid(row=0,
                                   column=0,
-                                  rowspan=3,
+                                  rowspan=4,
                                   padx=10,
                                   pady=10)
             else:  # Otherwise, simply update the panel
@@ -420,34 +453,46 @@ class Interface:
                 text = f"{name}: {count}\n"
             self.__info_label.configure(text=text)
 
+
     def upload(self, filename):
+        """Save image to both Cloud and local.
+
+        Args:
+            self: Instance itself.
+            filename: The name of saved file.
+
+        Return: None
+        """
         # Save to local path
-        save_img = self.frame.copy()
+        save_img = self.__frame.copy()
+
+        # Initialize the bucket for after usage
+        image_blob = None
 
         # Make the Google Cloud Storage client
         #  and set the storage path
-        if self.yaml["bucket"] is not None:
+        if self.__yaml["bucket"] is not None:
             client = storage.Client()
-            bucket = client.get_bucket(self.yaml["bucket"])
+            bucket = client.get_bucket(self.__yaml["bucket"])
             image_blob = bucket.blob(filename)
 
         # Upload and save the image
         try:
-            if self.yaml["output_path"] is not None:
+            if self.__yaml["output_path"] is not None:
                 # Save image in local
-                LOGGER.info(f"Saved {filename} in local folder",)
-                path = os.path.sep.join((self.yaml["output_path"], filename))
+                LOGGER.info(f"Saved {filename} in local folder", )
+                path = os.path.sep.join((self.__yaml["output_path"], filename))
                 cv2.imwrite(path, save_img)
 
                 # Upload to Google Cloud Storage
                 #  if the user set the "bucket" option
-                if self.yaml["bucket"] is not None:
-                    image_blob.upload_from_filename(os.path.sep.join((self.yaml["output_path"],
+                if self.__yaml["bucket"] is not None:
+                    image_blob.upload_from_filename(os.path.sep.join((self.__yaml["output_path"],
                                                                       filename)),
                                                     content_type="image/jpeg")
 
                     LOGGER.info(f"Saved {filename} to google cloud storage")
-            elif self.yaml["bucket"] is not None:
+            elif self.__yaml["bucket"] is not None:
                 # Convert numpy array to bytes
                 temp_file = Image.fromarray(cv2.cvtColor(save_img, cv2.COLOR_BGR2RGB))
                 temp_file_bytes = io.BytesIO()
@@ -466,6 +511,13 @@ class Interface:
             LOGGER.warning(error)
 
     def take_snapshot(self):
+        """Take the current snapshot and call the upload function.
+
+        Args:
+            self: Instance itself.
+
+        Return: None
+        """
         # Set the filename to
         #  year_month_date_hour_minute_second.jpg
         time_label = datetime.datetime.now()
@@ -478,10 +530,24 @@ class Interface:
         save_img_back.start()
 
     def start(self):
+        """Start the GUI.
+
+        Args:
+            self: Instance itself.
+
+        Return: None
+        """
         self.__detect.start()
         self.root.mainloop()
 
     def on_close(self):
+        """End the GUI and release the resource.
+
+        Args:
+            self: Instance itself.
+
+        Return: None
+        """
         # Release the resource and
         #  close the windows
         LOGGER.info("closing...")
