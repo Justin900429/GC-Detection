@@ -50,7 +50,7 @@ class Detection:
     Attributes:
         self.img: Original image get from camera.
         self.frame: Image with bounding boxes on it.
-        self.size: Size of the image.
+        self.size: Size of the image and frame.
         self.categories: Count the detected objects.
 
     Method:
@@ -153,7 +153,7 @@ class Detection:
 
     @property
     def size(self):
-        """tuple (width, height): Size of the image."""
+        """tuple (width, height): Size of the image and frame."""
         return self.__size
 
     def _detect_objs(self):
@@ -301,6 +301,7 @@ class Interface:
     Attributes:
         self.frame: Image with bounding boxes on it.
         self.root: Instance of tkinter.Tk().
+        self.size: Size of the image.
 
     Method:
         self.start(self): Start the detection interface.
@@ -412,6 +413,11 @@ class Interface:
     def frame(self):
         """numpy.array: Getter of detected frame."""
         return self.__frame
+
+    @property
+    def size(self):
+        """tuple (width, height): Size of the image and frame."""
+        return self.__yaml["size"][0], self.__yaml["size"][1]
 
     def video_loop(self):
         """Show the scene that the camera captured by using open CV.
