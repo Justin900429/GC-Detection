@@ -126,13 +126,13 @@ class Detection:
         self.__predict_start = False
 
         # Initializing threads
-        detect_objs = threading.Thread(target=self._detect_objs,
+        detect_objs = threading.Thread(target=self.__detect_objs,
                                        daemon=True)
         detect_objs.start()
-        draw_rec = threading.Thread(target=self._draw_rec,
+        draw_rec = threading.Thread(target=self.__draw_rec,
                                     daemon=True)
         draw_rec.start()
-        read_img = threading.Thread(target=self._get_img,
+        read_img = threading.Thread(target=self.__get_img,
                                     daemon=True)
         read_img.start()
 
@@ -156,7 +156,7 @@ class Detection:
         """tuple (width, height): Size of the image and frame."""
         return self.__size
 
-    def _detect_objs(self):
+    def __detect_objs(self):
         """Get the detected information from Cloud Vision API
         and save the info in self.__detection_info.
 
@@ -186,7 +186,7 @@ class Detection:
                                                             ).localized_object_annotations
             cv2.waitKey(30)
 
-    def _get_img(self):
+    def __get_img(self):
         """Return the image from the camera.
 
         Args:
@@ -208,7 +208,7 @@ class Detection:
 
             self.__img = cv2.resize(self.__img, (self.__size[0], self.__size[1]))
 
-    def _draw_rec(self):
+    def __draw_rec(self):
         """Draw the bounding boxes and information
         on the self.__img.
 
@@ -344,44 +344,44 @@ class Interface:
         # Check OS to make the design
         if platform.system() == "Darwin":
             # Design the button of "snapshot" for MACOSX
-            snap_btn = tkmacosx.Button(self.root,
-                                       text="Snapshot!",
-                                       command=self.take_snapshot,
-                                       padx=10,
-                                       pady=10,
-                                       bg="#A8E0FF")
+            self.__snap_btn = tkmacosx.Button(self.root,
+                                              text="Snapshot!",
+                                              command=self.__take_snapshot,
+                                              padx=10,
+                                              pady=10,
+                                              bg="#A8E0FF")
             # Design the button of "quit" for MACOSX
-            quit_btn = tkmacosx.Button(self.root,
-                                       text='Quit',
-                                       command=self.on_close,
-                                       padx=10,
-                                       pady=10,
-                                       background="#778EBB")
+            self.__quit_btn = tkmacosx.Button(self.root,
+                                              text='Quit',
+                                              command=self.__on_close,
+                                              padx=10,
+                                              pady=10,
+                                              background="#778EBB")
         else:
             # Design the button of "snapshot" for other OS
-            snap_btn = tk.Button(self.root,
-                                 text="Snapshot!",
-                                 command=self.take_snapshot,
-                                 padx=10,
-                                 pady=10,
-                                 bg="#A8E0FF")
+            self.__snap_btn = tk.Button(self.root,
+                                        text="Snapshot!",
+                                        command=self.__take_snapshot,
+                                        padx=10,
+                                        pady=10,
+                                        bg="#A8E0FF")
             # Design the button of "quit" for other OS
-            quit_btn = tk.Button(self.root,
-                                 text='Quit',
-                                 command=self.on_close,
-                                 padx=10,
-                                 pady=10,
-                                 background="#778EBB")
+            self.__quit_btn = tk.Button(self.root,
+                                        text='Quit',
+                                        command=self.__on_close,
+                                        padx=10,
+                                        pady=10,
+                                        background="#778EBB")
 
-        snap_btn.grid(row=0,
-                      column=1)
+        self.__snap_btn.grid(row=0,
+                             column=1)
 
-        quit_btn.grid(row=3,
-                      column=1)
+        self.__quit_btn.grid(row=3,
+                             column=1)
 
         # Design the label to display which categories show up on the screen
         self.__info_label = tk.Label(bg="#8EE3F5",
-                                     height=10,
+                                     height=20,
                                      width=16,
                                      anchor="nw",
                                      padx=10,
@@ -396,18 +396,16 @@ class Interface:
                                             anchor="nw",
                                             padx=10,
                                             pady=10)
-        self.__user_define_label.grid(row=2,
-                                      column=1)
 
         # Quit the event and start the video loop
         self.__quit = threading.Event()
-        video_start = threading.Thread(target=self.video_loop,
+        video_start = threading.Thread(target=self.__video_loop,
                                        daemon=True)
         video_start.start()
 
         # Set a callback to handle when the window is closed
         self.root.wm_title("Object detection")
-        self.root.wm_protocol("WM_DELETE_WINDOW", self.on_close)
+        self.root.wm_protocol("WM_DELETE_WINDOW", self.__on_close)
 
     @property
     def frame(self):
@@ -419,7 +417,7 @@ class Interface:
         """tuple (width, height): Size of the image and frame."""
         return self.__yaml["size"][0], self.__yaml["size"][1]
 
-    def video_loop(self):
+    def __video_loop(self):
         """Show the scene that the camera captured by using open CV.
 
         Args:
@@ -459,8 +457,7 @@ class Interface:
                 text = f"{name}: {count}\n"
             self.__info_label.configure(text=text)
 
-
-    def upload(self, filename):
+    def __upload(self, filename):
         """Save image to both Cloud and local.
 
         Args:
@@ -516,7 +513,7 @@ class Interface:
             #  and don't exit the program
             LOGGER.warning(error)
 
-    def take_snapshot(self):
+    def __take_snapshot(self):
         """Take the current snapshot and call the upload function.
 
         Args:
@@ -530,10 +527,25 @@ class Interface:
         filename = f"{time_label.strftime('%Y-%m-%d_%H-%M-%S')}.jpg"
 
         # Start the saving function in background
-        save_img_back = threading.Thread(target=self.upload,
+        save_img_back = threading.Thread(target=self.__upload,
                                          args=(filename,),
                                          daemon=True)
         save_img_back.start()
+
+    def extra_info(self, info_func):
+        # Set up the label config
+        self.__info_label.configure(height=10)
+        self.__user_define_label.grid(row=2,
+                                      column=1)
+
+        # Get the information
+        info = info_func()
+
+        # Put on the information
+        text = ""
+        for name, content in info.items():
+            text = f"{name}: {content}\n"
+        self.__user_define_label.configure(text=text)
 
     def start(self):
         """Start the GUI.
@@ -546,7 +558,7 @@ class Interface:
         self.__detect.start()
         self.root.mainloop()
 
-    def on_close(self):
+    def __on_close(self):
         """End the GUI and release the resource.
 
         Args:
