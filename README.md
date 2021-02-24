@@ -49,23 +49,6 @@ pip install -e .
 ## Usage 
 Follow the [documentation](https://justin900429.github.io/GC-Detection/Usage) to set up everything.
 
-## Example to Control the Drone
-
-- Using drone
-
-|key         | direction   | arrow                                                               |
-| :--------: | :---------: | :-----------------------------------------------------------------: |
-| w          | forward     | &uarr;                                                              | 
-| s          | backward    | &darr;                                                              |
-| a          | left        | &larr;                                                              |
-| d          | right       | &rarr;                                                              |
-| w + d      | right front | ![](https://render.githubusercontent.com/render/math?math=\nearrow) |
-| w + a      | left front  | ![](https://render.githubusercontent.com/render/math?math=\nwarrow) |
-| s + d      | right rear  | ![](https://render.githubusercontent.com/render/math?math=\searrow) |
-| s + a      | left rear   | ![](https://render.githubusercontent.com/render/math?math=\swarrow) |
-| t          | take off    |                                                                     |
-| l          | landing     |                                                                     |
-| Key Release| stop        |                                                                     |
 
 ## Authors
 - Justin Ruan, justin900429@gmail.com
