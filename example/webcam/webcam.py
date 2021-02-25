@@ -3,6 +3,7 @@ import gcdetection
 # Record the running time
 time = 1
 
+
 # Additional task
 def task(run_time):
     """Task to run in main loop"""

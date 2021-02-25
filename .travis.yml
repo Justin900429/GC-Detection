@@ -13,7 +13,3 @@ deploy:
   on:
     tags: true
     branch: main
-branches:
-  only:
-  - master
-  - main
