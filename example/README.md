@@ -1,5 +1,7 @@
 # Example explanation
 
+## Example 1 - Using Detection class only
+
 ## Example 2 - Drone
 
 - Control keys
@@ -17,3 +19,5 @@
     | t          | take off    |                                                                     |
     | l          | landing     |                                                                     |
     | Key Release| stop        |                                                                     |
+    
+## Example 3 - Using web cam

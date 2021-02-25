@@ -63,6 +63,16 @@ class Control:
         tello.send_rc_control(0, 0, 0, 0)
 
 
+# Additional task
+def task():
+    """Task run in main loop"""
+
+    # Information to be added
+    info = {"Battery": f"{tello.get_battery()}%"}
+    detect_window.extra_info(info)
+    detect_window.root.after(20, task)
+
+
 # Bind the key with tello control
 detect_window.root.bind("t", Control.takeoff)
 detect_window.root.bind("w", Control.forward)
@@ -75,6 +85,9 @@ detect_window.root.bind("sd", Control.right_back)
 detect_window.root.bind("sa", Control.left_back)
 detect_window.root.bind("<KeyRelease>", Control.stop)
 detect_window.root.bind("l", Control.land)
+
+# Run the task in main loop
+detect_window.root.after(20, task)
 
 # Start running the detection function
 detect_window.start()

@@ -532,14 +532,11 @@ class Interface:
                                          daemon=True)
         save_img_back.start()
 
-    def extra_info(self, info_func):
+    def extra_info(self, info: dict):
         # Set up the label config
         self.__info_label.configure(height=10)
         self.__user_define_label.grid(row=2,
                                       column=1)
-
-        # Get the information
-        info = info_func()
 
         # Put on the information
         text = ""

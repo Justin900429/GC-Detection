@@ -19,6 +19,9 @@ The class show the images detected in Detection class. Also, provide the functio
 ### `#!python start(self)`
 Start the tkinter to work. The code inside is simply `#!python self.root.mainloop()`
 
+### `#!python extra_info(self, info: dict)`
+Show the user-defined information. The layout and the composition will be rearranged.
+
 ## Example
 
 ```python
