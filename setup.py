@@ -21,7 +21,7 @@ setup(
     install_requires=requirements,
     download_url="https://github.com/Justin900429/GC-Detection/archive/0.9.0.tar.gz",
     license="MIT",
-    version="0.9.0",
+    version="1.0.0",
     keywords=['Google Cloud', 'Vision API', 'Object detection'],
     author="Justin Ruan, Joyce Fang",
     author_email="justin900429@gmail.com, objdoctor891213@gmail.com",
