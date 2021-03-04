@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/Justin900429/GC-Detection.svg?branch=main)](https://travis-ci.com/Justin900429/GC-Detection) [![PyPI](https://img.shields.io/pypi/v/GCDetection)](https://pypi.org/project/GCDetection/) ![PyPI - License](https://img.shields.io/pypi/l/GCDetection)
 
-[![image](https://i.imgur.com/rUsc0qX.png)](https://youtu.be/is_C-YHI9bM)
+[![image](https://i.imgur.com/rUsc0qX.png)](https://youtu.be/X0PYE7MsEoc)
 
 ## Introduction 
 Although there are lots of **object detection applications**, most of the applications are **hard to deploy**. In our project, we aim at **creating a simple application** that users can easily do the object detection jobs. In one of our demonstration, we used **drone to find out where the balls were and saved the images on Google Cloud**. This demonstration is a simple version of doing search and rescue. Namely, ball can be replaced with real people. This demonstration shows the value of our project.
