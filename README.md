@@ -1,24 +1,31 @@
-# README
+# GC Detection
 
 [![Build Status](https://travis-ci.com/Justin900429/GC-Detection.svg?branch=main)](https://travis-ci.com/Justin900429/GC-Detection) [![PyPI](https://img.shields.io/pypi/v/GCDetection)](https://pypi.org/project/GCDetection/) ![PyPI - License](https://img.shields.io/pypi/l/GCDetection)
 
-## Introduction 
-Although there are lots of **object detection applications**, most of the applications are **hard to deploy**. In our project, we aim at **creating an simple application** that user can easily do the object detection jobs. In one of our demonstration, we will **simulate a seismic disaster and use a drone to do the search and rescue with our application**. This demonstration can show the value of our project.
+[![image](https://i.imgur.com/rUsc0qX.png)](https://youtu.be/is_C-YHI9bM)
 
-## Demonstration
+## Introduction 
+Although there are lots of **object detection applications**, most of the applications are **hard to deploy**. In our project, we aim at **creating an simple application** that user can easily do the object detection jobs. In one of our demonstration, we used **drone to find out where the balls are and save the images on Google Cloud**. This demonstration is a simple version for doing search and rescue. Namely, ball can be replaced with real people. This demonstration show the value of our project.
+
+## Objectives
+There are three main objectives of our project.
+1. Make object detection easier.
+2. Used in the field of search and rescue.
+3. Do the crowd counting.
+
+## Interface layout
 ![](https://i.imgur.com/qQ8ymkC.jpg)
 - **Red region**
     Show the image which the camera captured and draw the bounding boxes of the certain objects
 - **Orange region**
-    Press this button to capture the right now image and save this image to certain root(Google Cloud or local)
+    Press this button to capture the image and save image to certain root(Google Cloud or local)
 - **Green region**
     Show which categories display in the red region
 - **Blue region**
     Press this button to leave the GUI 
 
-
-## Main Goals
-- Quickly deploy the object detection application
+## Documentation
+Follow the [documentation](https://justin900429.github.io/GC-Detection/Usage) to set up everything.
 
 ## Installation
 Before install the package, we highly recommend to build the virtual env. There are lots of tools user can choose. Below, we demonstrate how to use in conda environment.
@@ -45,11 +52,6 @@ pip install -e .
 
 * [For others OS](https://github.com/Justin900429/GC-Detection/blob/main/requirements/common.txt)
 
-
-## Usage 
-Follow the [documentation](https://justin900429.github.io/GC-Detection/Usage) to set up everything.
-
-
 ## Authors
 - Justin Ruan, justin900429@gmail.com
 - Joyce Fang, objdoctor891213a@gmail.com
@@ -62,6 +64,9 @@ Not open now.
 
 ## Get stuck?
 Open an issue or send us the email!😎
+
+## User feedback
+We really need the user feedback to help us promote the tools. Please fill [this form](https://forms.gle/VvnvQTCKrsLraNReA) to let us know how we can improve!
 
 
 
