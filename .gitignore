@@ -154,5 +154,5 @@ fabric.properties
 .DS_Store
 
 # Test file
-example/webcam/cfg.yml
+example/drone/cfg.yml
 .pylintrc

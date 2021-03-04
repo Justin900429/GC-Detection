@@ -25,6 +25,9 @@ There are three main objectives of our project.
     Press this button to leave the GUI 
 
 ## Documentation
+> Note: Although GC Detection is open source, using Google Cloud Vision API is not free. For more information, please refer to the documentation
+>
+
 Follow the [documentation](https://justin900429.github.io/GC-Detection/Usage) to set up everything.
 
 ## Installation

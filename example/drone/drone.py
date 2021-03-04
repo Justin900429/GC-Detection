@@ -59,6 +59,22 @@ class Control:
         tello.send_rc_control(-30, -30, 0, 0)
 
     @staticmethod
+    def rotate_right(event):
+        tello.send_rc_control(0, 0, 0, -50)
+
+    @staticmethod
+    def rotate_left(event):
+        tello.send_rc_control(0, 0, 0, 50)
+
+    @staticmethod
+    def up(event):
+        tello.send_rc_control(0, 0, 30, 0)
+
+    @staticmethod
+    def down(event):
+        tello.send_rc_control(0, 0, -30, 0)
+
+    @staticmethod
     def stop(event):
         tello.send_rc_control(0, 0, 0, 0)
 
@@ -83,6 +99,10 @@ detect_window.root.bind("wd", Control.right_front)
 detect_window.root.bind("wa", Control.left_front)
 detect_window.root.bind("sd", Control.right_back)
 detect_window.root.bind("sa", Control.left_back)
+detect_window.root.bind("g", Control.rotate_right)
+detect_window.root.bind("h", Control.rotate_left)
+detect_window.root.bind("u", Control.up)
+detect_window.root.bind("y", Control.down)
 detect_window.root.bind("<KeyRelease>", Control.stop)
 detect_window.root.bind("l", Control.land)
 
