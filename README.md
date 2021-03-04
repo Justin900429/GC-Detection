@@ -52,7 +52,6 @@ pip install -e .
 
 ## Needed Package
 * [For mac](https://github.com/Justin900429/GC-Detection/blob/main/requirements/mac.txt)
-
 * [For others OS](https://github.com/Justin900429/GC-Detection/blob/main/requirements/common.txt)
 
 ## Authors
