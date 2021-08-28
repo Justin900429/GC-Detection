@@ -62,7 +62,7 @@ pip install -e .
 Under [MIT](https://opensource.org/licenses/MIT) LICENCE, please check it [here](https://github.com/Justin900429/GC-Detection/blob/main/LICENSE.txt)
 
 ## How to contribute
-Not open now.
+pull request!
 
 ## Get stuck?
 Open an issue or send us the email!😎
